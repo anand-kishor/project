@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+                    <div class="col-md-5 offset-md-4">
+				<div class="my-card mt-2">
+					<div th:if="${session.message}"
+						th:classappend="${session.message.type}" class="alert"
+						role="alert">
+						<p class="text-center" th:text="${session.message.content}">
+							<th:block th:text="${#session.removeAttribute('message')}"></th:block>
+					</div>
+					<div class="container text-center">
+						<img style="width: 80px" src="" th:src="@{/img/register.png}" />
+					</div>
+					<h1 class="text-center">Register Here</h1>
+
+					<form action="" th:action="@{/do_register}" method="POST"
+						th:object="${user}">
+						<div class="form-group">
+							<label for="name_field" class="form-label">your name</label> <input
+								type="text" name="name" class="form-control " id="name_field"
+								th:classappend="${#fields.hasErrors('name') ? 'is-invalid':''}"
+								th:value="${user.name}" placeholder="enter here">
+
+							<div class="invalid-feedback" th:each="e : ${#fields.errors('name')}" th:text="${e}"></div>
+						</div>
+
+						<div class="form-group">
+							<label for="email_field" class="form-label">your email</label> <input
+								type="email" name="email" class="form-control" id="email_field"
+								th:value="${user.email}" placeholder="enter here">
+						</div>
+						<div class="form-group">
+							<label for="password_field" class="form-label">your
+								password</label> <input type="password" class="form-control"
+								id="password_field" name="password" placeholder="enter here">
+						</div>
+						<!-- about text area -->
+						<div class="form-group">
+							<label for="exampleFormControlTextarea1"  row="5"class="form-label">about</label>
+							<textarea name="about" th:value="${user.about}"
+								class="form-control" id="exampleFormControlTextarea1"
+								placeholder="enter something about yourself" rows="2"></textarea>
+						</div>
+						<div class="container text-center">
+							<input type="checkbox" name="agreement" class="form-check-input"
+								id="agreement" /> <label for="agreement">accept terms
+								and conditions</label>
+						</div>
+						<div class="container text-center">
+							<button type="submit" class="btn bg-primary btn-block text-white">submit</button>
+							<button type="reset" class="btn bg-warning btn-block  text-white">reset</button>
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+</div>
+	</section>
+
+</body>
+</html>

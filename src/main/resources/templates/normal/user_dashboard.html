@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="normal/base::layout(~{::section})">
+<head>
+<meta charset="ISO-8859-1">
+<title>this is home page</title>
+</head>
+<body>
+	<section>
+
+		<div class="container">
+			<div class="card">
+				<div class="card-body">
+					<div class="container text-center">
+						<img src="" style="width: 200px; height: 200px;"
+							class="my_profile_picture" th:src="@{'/img/contact.png'}"
+							alt="profile photo" />
+					</div>
+					<h1
+						class="text-center text-secondary font-italic font-weight-light mt-5">start
+						adding contact in cloud.....</h1>
+					<a th:href="@{/user/add-contact}"
+						class="btn btn-primary btn-block btn-lg mt-3 text-uppercase">Add
+						new contact</a>
+                  <hr/>
+                  <h3 class="my-2">Donate us></h3>
+		         <input id="payment_field" type="text" class="form-control my-4" placeholder="enter amount here"/>
+		         <div class="container text-center mt-4">
+		         <button onclick="paymentStart()" class="btn btn-success">PAY</button>
+		         </div>
+				</div>
+				
+			</div>
+		</div>
+		
+	</section>
+	<script >
+	$document().reddy(()=>{
+	$(".item").removeClass("active");
+	$("#home-link").addClass("active");
+	});
+	</script>
+</body>
+</html>
